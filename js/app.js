@@ -23,3 +23,22 @@ document.querySelectorAll('[data-go]').forEach((b) => {
     document.getElementById(b.dataset.go)?.scrollIntoView({ behavior: 'smooth' });
   });
 });
+
+// 3. Carruseles: el botón avanza y vuelve al inicio al llegar al final
+document.querySelectorAll('[data-car]').forEach((c) => {
+  const pista = c.querySelector('.trk');
+  c.querySelector('.nx')?.addEventListener('click', () => {
+    const fin = pista.scrollLeft + pista.clientWidth >= pista.scrollWidth - 4;
+    pista.scrollTo({ left: fin ? 0 : pista.scrollLeft + pista.clientWidth * 0.8, behavior: 'smooth' });
+  });
+});
+
+// 4. Pestañas Mujer / Hombre
+document.querySelectorAll('.tabs').forEach((tabs) => {
+  tabs.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-tab]');
+    if (!b) return;
+    tabs.querySelectorAll('button').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+    tabs.closest('section').querySelectorAll('.gr').forEach((g) => { g.hidden = g.id !== b.dataset.tab; });
+  });
+});
