@@ -1,43 +1,43 @@
+@font-face {
+    font-family: 'Scandia';
+    src: url('../assets/fonts/Scandia-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: 'Scandia';
+    src: url('../assets/fonts/Scandia-Medium.woff2') format('woff2');
+    font-weight: 500 600;
+    font-style: normal;
+    font-display: swap
+}
+
+@font-face {
+    font-family: 'Scandia';
+    src: url('../assets/fonts/Scandia-Bold.woff2') format('woff2');
+    font-weight: 700 900;
+    font-style: normal;
+    font-display: swap
+}
+
 :root {
-    --ink: #0b1f4b;
-    --blue: #0a58ca;
+    --ink: #333333;
+    --blue: #008cff;
     --ice: #f1f5fb;
-    --paper: #fbfcfe;
-    --amber: #f2a900;
-    --line: #d5deec;
-    --muted: #4a5878;
-    --navy: #071a40;
+    --paper: #ffffff;
+    --amber: #008cff;
+    --line: #004cba;
+    --muted: #004cba;
+    --navy: #002356;
     --on-navy: #fff;
     --img-blend: multiply;
-    --d: 'Bricolage Grotesque', 'Arial Narrow', Arial, sans-serif;
-    --b: 'Manrope', system-ui, Arial, sans-serif;
+    --d: 'Scandia', 'Helvetica Neue', Arial, sans-serif;
+    --b: 'Scandia', 'Helvetica Neue', Arial, sans-serif;
     box-sizing: border-box;
     padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px)
-}
-
-@media(prefers-color-scheme:dark) {
-    :root:not([data-theme=light]) {
-        --ink: #e8eefc;
-        --blue: #6aa6ff;
-        --ice: #0f1d3d;
-        --paper: #0a1530;
-        --line: #243660;
-        --muted: #aab6d3;
-        --navy: #050f26;
-        --img-blend: normal
-    }
-}
-
-:root[data-theme=dark] {
-    --ink: #e8eefc;
-    --blue: #6aa6ff;
-    --ice: #0f1d3d;
-    --paper: #0a1530;
-    --line: #243660;
-    --muted: #aab6d3;
-    --navy: #050f26;
-    --img-blend: normal
 }
 
 html {
@@ -139,7 +139,7 @@ p {
     left: 10px;
     top: 10px;
     background: #fff;
-    color: #000;
+    color: #333333;
     padding: 8px;
     z-index: 99
 }
@@ -232,11 +232,11 @@ header::before {
 
 /* styles */
 .styles {
-    --ink: #0b1f4b;
-    --blue: #0a58ca;
+    --ink: #333333;
+    --blue: #008cff;
     --img-blend: multiply;
     color: var(--ink);
-    background: #f4f7fb;
+    background: #f1f5fb;
     padding: 90px 0 0
 }
 
@@ -309,7 +309,7 @@ header::before {
 }
 
 .about p {
-    color: #c5d2ee;
+    color: #ffffff;
     margin-bottom: 14px;
     font-size: 1.15rem
 }
@@ -317,14 +317,14 @@ header::before {
 .about .btn {
     background: var(--amber);
     border-color: var(--amber);
-    color: #071a40;
+    color: #002356;
     margin-top: 18px
 }
 
 .about .btn:hover {
     background: #fff;
     border-color: #fff;
-    color: #071a40
+    color: #002356
 }
 
 .about img {
@@ -589,7 +589,7 @@ header::before {
 
 .col .btn {
     background: var(--amber);
-    color: #071a40;
+    color: #002356;
     border-color: var(--amber);
     align-self: flex-start
 }
@@ -669,7 +669,7 @@ footer h3 {
 
 footer p,
 footer li {
-    color: #c5d2ee;
+    color: #ffffff;
     font-size: .97rem
 }
 
@@ -691,7 +691,7 @@ footer a:hover {
 }
 
 footer b {
-    color: #8fc0ff
+    color: #008cff
 }
 
 .fl img {
@@ -712,12 +712,12 @@ footer b {
 }
 
 .copy {
-    border-top: 1px solid #1d2f5e;
+    border-top: 1px solid #004cba;
     margin-top: 46px;
     padding-top: 22px;
     text-align: center;
     font-size: .9rem;
-    color: #9fb0d6
+    color: #ffffff
 }
 
 .wa {
@@ -725,7 +725,7 @@ footer b {
     right: max(18px, env(safe-area-inset-right, 0px));
     bottom: max(18px, env(safe-area-inset-bottom, 0px));
     z-index: 30;
-    background: #1fa855;
+    background: #25d366;
     color: #fff;
     font-weight: 700;
     text-decoration: none;
@@ -956,7 +956,7 @@ footer b {
 .mv-g h2 {
     font-size: clamp(1.9rem, 3.4vw, 2.6rem);
     margin-bottom: 16px;
-    color: #2f7bff
+    color: #008cff
 }
 
 .mv-g p {
@@ -964,12 +964,12 @@ footer b {
 }
 
 .mv-m {
-    background: #071a40;
+    background: #002356;
     color: #fff
 }
 
 .mv-m p {
-    color: #d4def5
+    color: #ffffff
 }
 
 .mv-v {
@@ -1168,15 +1168,15 @@ footer b {
 }
 
 .hero {
-    --ink: #0b1f4b;
+    --ink: #002356;
     position: relative;
     overflow: hidden;
     isolation: isolate;
     aspect-ratio: 1905/943;
     min-height: 560px;
     max-height: 960px;
-    background: linear-gradient(90deg, #ebe5e7, #eee7e8);
-    color: #0b1f4b
+    background: linear-gradient(90deg, #f1f5fb, #f1f5fb);
+    color: #002356
 }
 
 .hero-img {
@@ -1219,18 +1219,18 @@ footer b {
 }
 
 .hero .d {
-    color: #0b1f4b;
+    color: #002356;
     margin-bottom: .35em
 }
 
 .hero .b {
-    color: #2f6fcf
+    color: #008cff
 }
 
 .hero p {
     max-width: 22em;
     margin: clamp(18px, 2.2vw, 32px) 0 clamp(24px, 3vw, 42px);
-    color: #1b2a4d;
+    color: #333333;
     font-size: clamp(1rem, 1.5vw, 1.3rem)
 }
 
@@ -1239,16 +1239,16 @@ footer b {
     align-items: center;
     gap: 14px;
     border-radius: 999px;
-    background: #0b2a63;
-    border-color: #0b2a63;
+    background: #004cba;
+    border-color: #004cba;
     color: #fff;
     padding: 1.1em 1.9em;
     text-transform: uppercase
 }
 
 .btn.pill:hover {
-    background: #0a58ca;
-    border-color: #0a58ca
+    background: #008cff;
+    border-color: #008cff
 }
 
 .btn.pill svg {
@@ -1336,7 +1336,7 @@ footer b {
     font: 700 .85rem var(--b);
     letter-spacing: .14em;
     text-transform: uppercase;
-    color: #a8741a;
+    color: #004cba;
     margin-bottom: 6px
 }
 
@@ -1433,8 +1433,8 @@ footer b {
 
 .bd {
     display: inline-block;
-    background: #d9f0c8;
-    color: #2a5a12;
+    background: #f1f5fb;
+    color: #004cba;
     font: 700 .8rem var(--b);
     padding: .3em .8em;
     border-radius: 3px;
@@ -1680,13 +1680,13 @@ footer b {
 }
 
 .tb thead th {
-    background: #f2a900;
-    color: #0b1f4b;
+    background: #008cff;
+    color: #002356;
     font-weight: 800
 }
 
 .tb tbody th {
-    background: #0b1f4b;
+    background: #002356;
     color: #fff;
     text-align: left
 }
@@ -1737,15 +1737,15 @@ footer b {
 
 /* ===== Tema tienda: limpio, mucho aire, fotografía protagonista ===== */
 :root {
-    --ink: #111318;
-    --blue: #0a58ca;
-    --ice: #f4f4f1;
+    --ink: #333333;
+    --blue: #008cff;
+    --ice: #f1f5fb;
     --paper: #fff;
-    --line: #e3e3df;
-    --muted: #5d6270;
-    --navy: #0d0f14;
-    --d: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
-    --b: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif
+    --line: #004cba;
+    --muted: #004cba;
+    --navy: #002356;
+    --d: 'Scandia', 'Helvetica Neue', Arial, sans-serif;
+    --b: 'Scandia', 'Helvetica Neue', Arial, sans-serif
 }
 
 h1,
@@ -1820,36 +1820,36 @@ h3 {
 }
 
 .hero .d {
-    color: #0b1f4b
+    color: #002356
 }
 
 .hero .b {
-    color: #2f6fcf
+    color: #008cff
 }
 
 .hero p {
     font-size: clamp(1rem, 1.3vw, 1.2rem);
-    color: #2c3550
+    color: #333333
 }
 
 .hero .btn {
-    background: #0b1f4b;
-    border-color: #0b1f4b;
+    background: #002356;
+    border-color: #002356;
     color: #fff
 }
 
 .hero .btn:hover {
-    background: #2f6fcf;
-    border-color: #2f6fcf
+    background: #008cff;
+    border-color: #008cff
 }
 
 .hero .btn.ghost {
     background: transparent;
-    color: #0b1f4b
+    color: #002356
 }
 
 .hero .btn.ghost:hover {
-    background: #0b1f4b;
+    background: #002356;
     color: #fff
 }
 
@@ -1899,8 +1899,8 @@ h3 {
 
 /* categorías como baldosas */
 .styles {
-    --ink: #111318;
-    --blue: #0a58ca;
+    --ink: #333333;
+    --blue: #008cff;
     background: #fff;
     padding: 76px 0 84px
 }
@@ -1917,7 +1917,7 @@ h3 {
 }
 
 .cat a {
-    background: #f4f4f1;
+    background: #f1f5fb;
     padding: 0;
     overflow: hidden
 }
@@ -1947,7 +1947,7 @@ h3 {
     bottom: 20px;
     margin: 0;
     border: 0;
-    background: #111318;
+    background: #333333;
     color: #fff;
     padding: .8em 1.3em;
     font-size: .7rem;
@@ -1956,18 +1956,18 @@ h3 {
 }
 
 .cat a:hover span {
-    background: #0a58ca
+    background: #008cff
 }
 
 .about .btn {
     background: #fff;
     border-color: #fff;
-    color: #111318
+    color: #333333
 }
 
 .about .btn:hover {
-    background: #0a58ca;
-    border-color: #0a58ca;
+    background: #008cff;
+    border-color: #008cff;
     color: #fff
 }
 
@@ -1989,7 +1989,7 @@ h3 {
 .col .btn {
     background: #fff;
     border-color: #fff;
-    color: #111318
+    color: #333333
 }
 
 .col .btn:hover {
@@ -2171,7 +2171,7 @@ h3 {
 
 /* ajustes: baldosas del mismo tono que las fotos, logo sin recuadro */
 .cat a {
-    background: #f3f7fa
+    background: #f1f5fb
 }
 
 .cat img {
@@ -2182,16 +2182,8 @@ h3 {
     mix-blend-mode: multiply
 }
 
-@media(prefers-color-scheme:dark) {
-    :root:not([data-theme=light]) .nav img {
-        mix-blend-mode: normal;
-        background: #fff;
-        padding: 4px 8px
-    }
-}
-
 footer {
-    background: #001630
+    background: #002356
 }
 
 .cat img {
@@ -2273,13 +2265,18 @@ footer {
     height: 22px
 }
 
+.hd-ic img {
+    width: 20px;
+    height: 20px
+}
+
 .hs {
     display: grid;
     grid-template-columns: 1.15fr 1fr;
     min-height: min(82vh, 720px);
-    background: linear-gradient(90deg, #ebe5e7, #eee7e8);
-    --ink: #0b1f4b;
-    color: #0b1f4b
+    background: linear-gradient(90deg, #f1f5fb, #f1f5fb);
+    --ink: #002356;
+    color: #002356
 }
 
 .hs-i {
@@ -2314,7 +2311,7 @@ footer {
 
 .hs h1 span {
     display: block;
-    color: #2f6fcf;
+    color: #008cff;
     margin-top: .35em
 }
 
@@ -2322,7 +2319,7 @@ footer {
     max-width: 30em;
     margin: 22px auto 30px;
     font-size: 1.1rem;
-    color: #2c3550
+    color: #333333
 }
 
 .hs-b {
@@ -2333,15 +2330,15 @@ footer {
 }
 
 .hs .btn {
-    background: #0b1f4b;
-    border-color: #0b1f4b;
+    background: #002356;
+    border-color: #002356;
     color: #fff;
     padding: 1.4em 2.4em
 }
 
 .hs .btn:hover {
-    background: #2f6fcf;
-    border-color: #2f6fcf
+    background: #008cff;
+    border-color: #008cff
 }
 
 .cr {
@@ -2497,7 +2494,7 @@ footer {
 .fb {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background: #0b1f4b;
+    background: #002356;
     color: #fff
 }
 
@@ -2528,7 +2525,7 @@ footer {
 
 .fb-t p {
     max-width: 30em;
-    color: #dbe4f7;
+    color: #ffffff;
     font-size: 1.08rem
 }
 
@@ -2545,12 +2542,12 @@ footer {
 .fb .btn {
     background: #fff;
     border-color: #fff;
-    color: #111318
+    color: #333333
 }
 
 .fb .btn:hover {
-    background: #2f6fcf;
-    border-color: #2f6fcf;
+    background: #008cff;
+    border-color: #008cff;
     color: #fff
 }
 
@@ -2590,7 +2587,7 @@ footer {
     left: 16px;
     bottom: 16px;
     background: #fff;
-    color: #111318;
+    color: #333333;
     padding: .85em 1.3em;
     font: 700 .74rem var(--b);
     letter-spacing: .09em;
@@ -2625,7 +2622,7 @@ footer {
 }
 
 .ft {
-    background: #001630;
+    background: #002356;
     color: #fff;
     padding: 72px 0 28px
 }
@@ -2643,7 +2640,7 @@ footer {
 }
 
 .ft-sub {
-    color: #c5d2ee;
+    color: #ffffff;
     margin: 14px 0 8px;
     max-width: 22em
 }
@@ -2662,7 +2659,7 @@ footer {
 }
 
 .ft-soc a {
-    color: #c5d2ee;
+    color: #ffffff;
     border: 0
 }
 
@@ -2693,7 +2690,7 @@ footer {
 }
 
 .ft b {
-    color: #8fc0ff
+    color: #008cff
 }
 
 .wa {
