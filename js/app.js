@@ -44,9 +44,9 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
 });
 
 // 5. Paleta de colores de los Scrubs Básicos para mujer
-const buildProductInquiryUrl = (model, color, size) => {
+const buildProductInquiryUrl = (model, color, size, audience = 'mujer') => {
   const sizeText = size ? `, talla ${size}` : '';
-  const message = `Hola, me interesa el modelo ${model} en color ${color} para mujer${sizeText}`;
+  const message = `Hola, me interesa el modelo ${model} en color ${color} para ${audience}${sizeText}`;
   return `https://wa.me/593992301635?text=${encodeURIComponent(message)}`;
 };
 
@@ -124,7 +124,7 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   let slides = parseSlides(slideList);
   const hasColorOptions = colorOptions.length > 0;
   if (dots.length < slides.length
-      || (!hasColorOptions && (slides.length < 2 || dots.length !== slides.length))) {
+      || (!hasColorOptions && slides.length > 1 && dots.length !== slides.length)) {
     throw new Error('La galería necesita una foto y un indicador por cada posición.');
   }
 
@@ -172,8 +172,17 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       intervalId = window.setInterval(advance, 2000);
     }
   };
+  if (video) {
+    video.addEventListener('ended', () => {
+      if (!isVideoSlide(slides[current])) return;
+      video.currentTime = 0;
+      showSlide(0);
+      startRotation();
+    });
+  }
   const updateContactLink = () => {
-    contactLink.href = buildProductInquiryUrl(galleryName, galleryColor, sizeSelect.value);
+    const audience = gallery.dataset.galleryAudience || 'mujer';
+    contactLink.href = buildProductInquiryUrl(galleryName, galleryColor, sizeSelect.value, audience);
   };
   sizeSelect.addEventListener('change', updateContactLink);
   const selectColor = (button) => {
@@ -219,6 +228,7 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
     }
     selectColor(selectedColor);
   } else {
+    dotsContainer.hidden = slides.length === 1;
     showSlide(0);
     startRotation();
     updateContactLink();
