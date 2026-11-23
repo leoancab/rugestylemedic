@@ -1398,35 +1398,198 @@ footer b {
     margin-top: 4px
 }
 
-.bs {
+.mj-colors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px
+}
+
+.mj-colors button {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    background: transparent;
+    color: var(--ink);
+    font: 600 .9rem var(--b);
+    cursor: pointer
+}
+
+.mj-colors button[aria-pressed=true] {
+    border-color: var(--ink);
+    box-shadow: 0 0 0 1px var(--ink)
+}
+
+.mj-colors button span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--swatch-color);
+    box-shadow: 0 0 0 1px var(--line)
+}
+
+.product-gallery {
     display: grid;
-    grid-template-columns: .8fr 2fr;
+    grid-template-columns: minmax(0, 1.2fr) minmax(220px, .8fr);
     gap: 44px;
     align-items: start
 }
 
-.mt {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr 1fr;
-    gap: 32px;
-    align-items: start
-}
-
-.mt-i {
+.product-photo > img,
+.product-photo > video {
+    display: block;
     width: 100%;
-    height: auto;
+    max-height: 780px;
+    object-fit: contain;
     background: var(--ice)
 }
 
-.pf.one {
-    grid-template-columns: 1fr;
-    margin: 0
+.product-photo > video[hidden] {
+    display: none
+}
+
+.product-options {
+    display: grid;
+    justify-items: start;
+    gap: 16px;
+    padding: 24px;
+    background: var(--ice)
+}
+
+.product-options .kk {
+    margin: 0;
+    font: 700 .85rem var(--b);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted)
+}
+
+.product-options [data-color-title] {
+    margin: 0;
+    font: 700 1.4rem var(--d)
+}
+
+.size-selector {
+    display: grid;
+    gap: 8px;
+    width: 100%;
+    max-width: 260px;
+    color: var(--ink);
+    font: 600 .9rem var(--b)
+}
+
+.size-selector select {
+    width: 100%;
+    min-height: 42px;
+    border: 1px solid var(--line);
+    padding: 9px 12px;
+    background: #fff;
+    color: var(--ink);
+    font: 500 .95rem var(--b)
+}
+
+.size-selector select:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px
+}
+
+.product-palette {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700
+}
+
+.product-swatch {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--swatch-color, #243d77);
+    box-shadow: 0 0 0 1px var(--line)
+}
+
+.product-dots {
+    display: flex;
+    gap: 9px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px
+}
+
+.product-dots[hidden] {
+    display: none
+}
+
+.product-dot {
+    display: block;
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--line);
+    cursor: pointer
+}
+
+.product-dot.is-active {
+    background: var(--ink);
+    transform: scale(1.25)
+}
+
+.product-dot:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px
+}
+
+.maternal-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none
+}
+
+.maternal-details li {
+    display: grid;
+    grid-template-columns: 76px 1fr;
+    gap: 14px;
+    align-items: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .88rem
+}
+
+.maternal-details img {
+    width: 76px;
+    height: 76px;
+    object-fit: cover;
+    background: var(--ice)
+}
+
+.maternal-details b {
+    display: block;
+    margin-bottom: 4px;
+    color: var(--ink);
+    font-size: .95rem
 }
 
 @media(max-width:960px) {
 
-    .bs,
-    .mt {
+    .product-gallery {
+        grid-template-columns: 1fr
+    }
+
+    .maternal-details {
+        grid-template-columns: repeat(2, 1fr)
+    }
+}
+
+@media(max-width:560px) {
+    .maternal-details {
         grid-template-columns: 1fr
     }
 }
@@ -2044,8 +2207,8 @@ h3 {
     font: 500 1.02rem var(--b)
 }
 
-.bd {
-    background: var(--ink);
+.pr-t > .bd {
+    background: var(--blue);
     color: var(--paper);
     border-radius: 0;
     font-size: .66rem;
