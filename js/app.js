@@ -43,12 +43,93 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
   });
 });
 
-// 5. Paleta de colores de los Scrubs Básicos para mujer
+// 5. Opciones de color para las colecciones
 const buildProductInquiryUrl = (model, color, size, audience = 'mujer') => {
   const sizeText = size ? `, talla ${size}` : '';
   const message = `Hola, me interesa el modelo ${model} en color ${color} para ${audience}${sizeText}`;
   return `https://wa.me/593992301635?text=${encodeURIComponent(message)}`;
 };
+
+const availableColors = [
+  ['Morado', '#7a2e8e'],
+  ['Morado profundo', '#4b145b'],
+  ['Vino', '#7a1e3a'],
+  ['Vino oscuro', '#4a1026'],
+  ['Gris claro', '#d9d9d9'],
+  ['Beige grisaceo', '#b8aa9a'],
+  ['Beige', '#d8c3a5'],
+  ['Beige suave', '#e8dccb'],
+  ['Kaki', '#a8996e'],
+  ['Arena', '#c2a878'],
+  ['Terracota', '#b65a3c'],
+  ['Terracota suave', '#d08a70'],
+  ['Coral', '#f26b5b'],
+  ['Coral pastel', '#f5a29a'],
+  ['Pardo', '#765341'],
+  ['Amarillo Pastel', '#f4e79a'],
+  ['Pistacho', '#b7d18b'],
+  ['Miel', '#d9a441'],
+  ['Rojo', '#d8262f'],
+  ['Naranja', '#ef7c24'],
+  ['Negro', '#111111'],
+  ['Blanco', '#ffffff'],
+  ['Mostaza', '#c89b19'],
+  ['Celeste claro', '#89cff0'],
+  ['Celeste cielo', '#89cff0'],
+  ['Azul marino', '#183153'],
+  ['Azul intenso', '#163b8c'],
+  ['Azul royal', '#4169e1'],
+  ['Azul electrico', '#1464f4'],
+  ['Turquesa', '#38bfc1'],
+  ['Turquesa oscura', '#007c78'],
+  ['Verde petroleo', '#135b58'],
+  ['Verde hoja', '#4e9a51'],
+  ['Verde militar', '#4b5631'],
+  ['Lila claro', '#c8a2c8'],
+  ['Menta pastel', '#a8dcc8'],
+  ['Celeste menta', '#a5dde0'],
+  ['Rosa pastel', '#f2b8c6'],
+  ['Rosa', '#e783a2'],
+  ['Rosa yoga', '#d8a5b5'],
+  ['Fucsia', '#d81b75'],
+  ['Palo de rosa claro', '#d8a1a7'],
+];
+
+const normalizeColor = (color) => color
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLocaleLowerCase('es');
+
+document.querySelectorAll('[data-color-selector]').forEach((container) => {
+  const existingButtons = [...container.querySelectorAll('button[data-color]')];
+  const existingByColor = new Map(existingButtons.map((button) => [normalizeColor(button.dataset.color), button]));
+  const model = existingButtons.find((button) => button.dataset.model)?.dataset.model;
+  const requestedNames = new Set(availableColors.map(([name]) => normalizeColor(name)));
+  const legacyColors = existingButtons
+    .filter((button) => !requestedNames.has(normalizeColor(button.dataset.color)))
+    .map((button) => [button.dataset.color, button.style.getPropertyValue('--swatch-color') || '#808080']);
+  const orderedColors = [...availableColors, ...legacyColors];
+  const selectedColor = existingButtons.find((button) => button.getAttribute('aria-pressed') === 'true')?.dataset.color;
+
+  container.replaceChildren(...orderedColors.map(([name, swatchColor]) => {
+    const button = existingByColor.get(normalizeColor(name)) || document.createElement('button');
+    button.type = 'button';
+    button.dataset.color = name;
+    if (model) button.dataset.model = model;
+    if (container.closest('[data-color-palette]')) {
+      button.dataset.model = button.dataset.model || container.closest('[data-color-palette]').dataset.model || 'Scrub Básico';
+    } else {
+      button.dataset.galleryColorOption = '';
+    }
+    button.style.setProperty('--swatch-color', swatchColor);
+    button.setAttribute('aria-pressed', String(normalizeColor(name) === normalizeColor(selectedColor || '')));
+    button.replaceChildren();
+    const swatch = document.createElement('span');
+    swatch.setAttribute('aria-hidden', 'true');
+    button.append(swatch, document.createTextNode(name));
+    return button;
+  }));
+});
 
 document.querySelectorAll('[data-color-palette]').forEach((palette) => {
   const image = palette.querySelector('[data-color-preview]');
@@ -76,17 +157,19 @@ document.querySelectorAll('[data-color-palette]').forEach((palette) => {
   updateContactLink();
   sizeSelect.addEventListener('change', updateContactLink);
 
-  palette.querySelectorAll('button[data-model][data-color][data-image]').forEach((button) => {
+  palette.querySelectorAll('button[data-model][data-color]').forEach((button) => {
     button.addEventListener('click', () => {
       const model = button.dataset.model;
       const color = button.dataset.color;
       const selectedImage = button.dataset.image;
-      if (!model || !color || !selectedImage) {
+      if (!model || !color) {
         throw new Error('El modelo seleccionado no tiene todos sus datos configurados.');
       }
 
-      image.src = selectedImage;
-      image.alt = `${model} color ${color}`;
+      if (selectedImage) {
+        image.src = selectedImage;
+        image.alt = `${model} color ${color}`;
+      }
       selectedModel = model;
       selectedColor = color;
       updateContactLink();
@@ -121,7 +204,8 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
     }
     return parsedSlides;
   };
-  let slides = parseSlides(slideList);
+  const defaultSlides = parseSlides(slideList);
+  let slides = defaultSlides;
   const hasColorOptions = colorOptions.length > 0;
   if (dots.length < slides.length
       || (!hasColorOptions && slides.length > 1 && dots.length !== slides.length)) {
@@ -130,7 +214,46 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
 
   let current = 0;
   let intervalId = null;
+  let isGalleryVisible = false;
+  let isVideoManuallyPaused = false;
+  const videoControl = document.createElement('button');
+  videoControl.type = 'button';
+  videoControl.className = 'video-pause-control';
+  videoControl.hidden = true;
+  videoControl.setAttribute('aria-label', 'Pausar video');
+  videoControl.textContent = 'Ⅱ';
+  image.parentElement.append(videoControl);
+
   const isVideoSlide = (slide) => /\.(mp4|webm|ogg)(?:$|\?)/i.test(slide);
+  const syncVideoPlayback = () => {
+    if (!video || video.hidden) return;
+    if (isGalleryVisible && !isVideoManuallyPaused) {
+      if (video.readyState >= 2) {
+        void video.play().catch(() => {});
+      } else {
+        video.addEventListener('canplay', () => {
+          if (isGalleryVisible && !isVideoManuallyPaused) {
+            void video.play().catch(() => {});
+          }
+        }, { once: true });
+      }
+    } else {
+      video.pause();
+    }
+  };
+  videoControl.addEventListener('click', () => {
+    if (video.paused) {
+      isVideoManuallyPaused = false;
+      videoControl.textContent = 'Ⅱ';
+      videoControl.setAttribute('aria-label', 'Pausar video');
+      syncVideoPlayback();
+    } else {
+      isVideoManuallyPaused = true;
+      video.pause();
+      videoControl.textContent = '▶';
+      videoControl.setAttribute('aria-label', 'Reproducir video');
+    }
+  });
   const showSlide = (index) => {
     current = index;
     const slide = slides[current];
@@ -138,16 +261,22 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       stopRotation();
       image.hidden = true;
       video.hidden = false;
+      videoControl.hidden = false;
+      isVideoManuallyPaused = false;
+      videoControl.textContent = 'Ⅱ';
+      videoControl.setAttribute('aria-label', 'Pausar video');
       video.setAttribute('aria-label', `Video de ${galleryName} color ${galleryColor}`);
       if (video.dataset.src !== slide) {
         video.dataset.src = slide;
         video.src = slide;
         video.load();
       }
+      syncVideoPlayback();
     } else {
       if (video) {
         video.pause();
         video.hidden = true;
+        videoControl.hidden = true;
       }
       image.hidden = false;
       image.src = slide;
@@ -188,11 +317,11 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   const selectColor = (button) => {
     const color = button.dataset.color;
     const optionSlides = button.dataset.photoSlides;
-    if (!color || !optionSlides) {
-      throw new Error('El color seleccionado no tiene sus fotos configuradas.');
+    if (!color) {
+      throw new Error('El color seleccionado no tiene su nombre configurado.');
     }
 
-    const nextSlides = parseSlides(optionSlides);
+    const nextSlides = optionSlides ? parseSlides(optionSlides) : defaultSlides;
     if (nextSlides.length > dots.length) {
       throw new Error('El color seleccionado tiene más fotos que indicadores.');
     }
@@ -212,12 +341,14 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
 
   if (colorOptions.length) {
     colorOptions.forEach((button) => {
-      if (!button.dataset.color || !button.dataset.photoSlides) {
-        throw new Error('Una opción de color no tiene sus fotos configuradas.');
+      if (!button.dataset.color) {
+        throw new Error('Una opción de color no tiene su nombre configurado.');
       }
-      const optionSlides = parseSlides(button.dataset.photoSlides);
-      if (optionSlides.length > dots.length) {
-        throw new Error('Una opción de color tiene más fotos que indicadores.');
+      if (button.dataset.photoSlides) {
+        const optionSlides = parseSlides(button.dataset.photoSlides);
+        if (optionSlides.length > dots.length) {
+          throw new Error('Una opción de color tiene más fotos que indicadores.');
+        }
       }
       button.addEventListener('click', () => selectColor(button));
     });
@@ -242,4 +373,17 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       startRotation();
     });
   });
+
+  if (video && 'IntersectionObserver' in window) {
+    const visibilityObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.target !== gallery) return;
+        isGalleryVisible = entry.isIntersecting;
+        syncVideoPlayback();
+      });
+    }, { threshold: 0.25 });
+    visibilityObserver.observe(gallery);
+  } else {
+    isGalleryVisible = true;
+  }
 });

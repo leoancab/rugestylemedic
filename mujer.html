@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Colección Mujer | RUGE Style Medic</title>
     <meta name="description"
-        content="Uniformes médicos para mujer: Básicos, Amelie, Aura, Power Femme, Flex, Linda, Jossy, Med Elite, Mercy y Scrub Materno.">
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🩺%3C/text%3E%3C/svg%3E">
+        content="Uniformes médicos para mujer: Básicos, Amelie, Aura, Ruge Femme, Flex, Linda, Jossy, Med Elite, Mercy, Medic Stitch y Scrub Materno.">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap"
@@ -49,12 +48,13 @@
                         <button type="button" data-go="m-1">Básicos</button>
                         <button type="button" data-go="m-2">Amelie</button>
                         <button type="button" data-go="m-5">Aura</button>
-                        <button type="button" data-go="m-6">Power Femme</button>
+                        <button type="button" data-go="m-6">Ruge Femme</button>
                         <button type="button" data-go="m-7">Flex</button>
                         <button type="button" data-go="m-8">Linda</button>
                         <button type="button" data-go="m-9">Jossy</button>
                         <button type="button" data-go="m-10">Med Elite</button>
                         <button type="button" data-go="m-11">Mercy</button>
+                        <button type="button" data-go="m-12">Medic Stitch</button>
                         <button type="button" data-go="m-4">Scrub Materno</button>
                     </nav>
                 </div>
@@ -72,19 +72,20 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="mj-colors" role="group" aria-label="Colores de los Scrubs Básicos">
+                            <div class="mj-colors" data-color-selector role="group"
+                                aria-label="Colores de los Scrubs Básicos">
                                 <button type="button" data-model="Scrub Básico" data-color="Negro"
                                     data-image="img/mujer-uniforme-scrub-cruzado.jpg" style="--swatch-color:#000"
                                     aria-pressed="true"><span aria-hidden="true"></span>Negro</button>
                                 <button type="button" data-model="Scrub Básico" data-color="Blanco"
                                     data-image="img/mujer-uniforme-classic-scrubvibe.jpg" style="--swatch-color:#fff"
                                     aria-pressed="false"><span aria-hidden="true"></span>Blanco</button>
-                                <button type="button" data-model="Scrub Básico" data-color="Menta"
+                                <button type="button" data-model="Scrub Básico" data-color="Menta pastel"
                                     data-image="img/mujer-uniforme-scrub-clasico.jpg" style="--swatch-color:#a9dccb"
-                                    aria-pressed="false"><span aria-hidden="true"></span>Menta</button>
-                                <button type="button" data-model="Scrub Básico" data-color="Lila pastel"
+                                    aria-pressed="false"><span aria-hidden="true"></span>Menta pastel</button>
+                                <button type="button" data-model="Scrub Básico" data-color="Lila claro"
                                     data-image="img/mujer-uniforme-lila-pastel.jpg" style="--swatch-color:#c9b3f0"
-                                    aria-pressed="false"><span aria-hidden="true"></span>Lila pastel</button>
+                                    aria-pressed="false"><span aria-hidden="true"></span>Lila claro</button>
                                 <button type="button" data-model="Scrub Básico" data-color="Rosa pastel"
                                     data-image="img/mujer-uniforme-rosa-pastel.jpg" style="--swatch-color:#f4b8c8"
                                     aria-pressed="false"><span aria-hidden="true"></span>Rosa pastel</button>
@@ -132,16 +133,16 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="mj-colors" role="group" aria-label="Colores de Amelie">
-                                <button type="button" data-gallery-color-option data-color="Azul"
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Colores de Amelie">
+                                <button type="button" data-gallery-color-option data-color="Azul marino"
                                     data-photo-slides="img/amelie-azul-1.png|img/amelie-azul-2.png|img/amelie-azul-3.jpeg|img/amelie-azul-4.jpeg|img/amelie-azul-5.jpeg"
                                     style="--swatch-color:#243d77" aria-pressed="true">
-                                    <span aria-hidden="true"></span>Azul
+                                    <span aria-hidden="true"></span>Azul marino
                                 </button>
-                                <button type="button" data-gallery-color-option data-color="Cian"
+                                <button type="button" data-gallery-color-option data-color="Turquesa"
                                     data-photo-slides="img/amelie-cian.jpeg" style="--swatch-color:#8ce2e5"
                                     aria-pressed="false">
-                                    <span aria-hidden="true"></span>Cian
+                                    <span aria-hidden="true"></span>Turquesa
                                 </button>
                             </div>
                             <label class="size-selector">
@@ -183,9 +184,11 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="product-palette" role="group" aria-label="Color de Aura">
-                                <span class="product-swatch" style="--swatch-color:#111" aria-hidden="true"></span>
-                                <span>Negro</span>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Aura">
+                                <button type="button" data-gallery-color-option data-color="Negro"
+                                    style="--swatch-color:#111" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Negro
+                                </button>
                             </div>
                             <label class="size-selector">
                                 <span>Talla (opcional)</span>
@@ -208,15 +211,17 @@
                 <section class="mj-s" id="m-6">
                     <div class="mj-h">
                         <p class="kk">Nueva colección</p>
-                        <h2>Power Femme</h2>
+                        <h2>Ruge Femme</h2>
                     </div>
-                    <div class="product-gallery" data-photo-gallery data-gallery-name="Power Femme"
-                        data-gallery-color="verde oliva"
+                    <div class="product-gallery" data-photo-gallery data-gallery-name="Ruge Femme"
+                        data-gallery-color="Verde militar"
                         data-photo-slides="img/power-femme-1.jpeg|img/power-femme-2.jpeg|img/power-femme-3.jpeg|img/power-femme-4.jpeg|img/power-femme-5.jpeg">
                         <div class="product-photo">
                             <img data-photo-image src="img/power-femme-1.jpeg"
-                                alt="Power Femme color verde oliva, foto 1 de 5" loading="lazy">
-                            <div class="product-dots" role="group" aria-label="Fotos de Power Femme">
+                                alt="Ruge Femme color Verde militar, foto 1 de 5" loading="lazy">
+                            <video data-photo-video loop playsinline preload="metadata" aria-label="Video de Ruge Femme"
+                                hidden></video>
+                            <div class="product-dots" role="group" aria-label="Fotos de Ruge Femme">
                                 <button class="product-dot is-active" type="button" data-photo-dot
                                     aria-label="Mostrar foto 1 de 5" aria-pressed="true"></button>
                                 <button class="product-dot" type="button" data-photo-dot
@@ -231,9 +236,27 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="product-palette" role="group" aria-label="Color de Power Femme">
-                                <span class="product-swatch" style="--swatch-color:#303626" aria-hidden="true"></span>
-                                <span>Verde oliva</span>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Ruge Femme">
+                                <button type="button" data-gallery-color-option data-color="Verde militar"
+                                    data-photo-slides="img/power-femme-1.jpeg|img/power-femme-2.jpeg|img/power-femme-3.jpeg|img/power-femme-4.jpeg|img/power-femme-5.jpeg"
+                                    style="--swatch-color:#4b5631" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Verde militar
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Kaki"
+                                    data-photo-slides="img/power-femme-kaki-1.jpeg" style="--swatch-color:#b8a58a"
+                                    aria-pressed="false">
+                                    <span aria-hidden="true"></span>Kaki
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Verde Hoja"
+                                    data-photo-slides="videos/femme-lima.mp4" style="--swatch-color:#78a93b"
+                                    aria-pressed="false">
+                                    <span aria-hidden="true"></span>Verde Hoja
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Beige suave"
+                                    data-photo-slides="videos/femme-beige.mp4" style="--swatch-color:#d8c3a5"
+                                    aria-pressed="false">
+                                    <span aria-hidden="true"></span>Beige suave
+                                </button>
                             </div>
                             <label class="size-selector">
                                 <span>Talla (opcional)</span>
@@ -248,7 +271,7 @@
                                 </select>
                             </label>
                             <a class="btn" data-gallery-contact
-                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Power%20Femme%20en%20color%20Verde%20oliva%20para%20mujer"
+                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Ruge%20Femme%20en%20color%20Verde%20militar%20para%20mujer"
                                 target="_blank" rel="noopener">Consultar por WhatsApp</a>
                         </div>
                     </div>
@@ -274,9 +297,11 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="product-palette" role="group" aria-label="Color de Flex">
-                                <span class="product-swatch" style="--swatch-color:#111" aria-hidden="true"></span>
-                                <span>Negro</span>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Flex">
+                                <button type="button" data-gallery-color-option data-color="Negro"
+                                    style="--swatch-color:#111" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Negro
+                                </button>
                             </div>
                             <label class="size-selector">
                                 <span>Talla (opcional)</span>
@@ -318,9 +343,12 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="product-palette" role="group" aria-label="Color de Linda">
-                                <span class="product-swatch" style="--swatch-color:#9144ae" aria-hidden="true"></span>
-                                <span>Morado</span>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Linda">
+                                <button type="button" data-gallery-color-option data-color="Morado"
+                                    data-photo-slides="img/linda-morado-1.png|img/linda-morado-2.png|img/linda-morado-3.png"
+                                    style="--swatch-color:#9144ae" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Morado
+                                </button>
                             </div>
                             <label class="size-selector">
                                 <span>Talla (opcional)</span>
@@ -345,13 +373,14 @@
                         <p class="kk">Nueva colección</p>
                         <h2>Jossy</h2>
                     </div>
-                    <div class="product-gallery" data-photo-gallery data-gallery-name="Jossy" data-gallery-color="lila"
+                    <div class="product-gallery" data-photo-gallery data-gallery-name="Jossy"
+                        data-gallery-color="Lila claro"
                         data-photo-slides="img/jossy-1.jpeg|img/jossy-2.jpeg|videos/jossy-lila.mp4">
                         <div class="product-photo">
-                            <img data-photo-image src="img/jossy-1.jpeg" alt="Jossy color lila, foto 1 de 3"
+                            <img data-photo-image src="img/jossy-1.jpeg" alt="Jossy color Lila claro, foto 1 de 3"
                                 loading="lazy">
-                            <video data-photo-video playsinline preload="metadata" aria-label="Video de Jossy" hidden
-                                autoplay></video>
+                            <video data-photo-video playsinline preload="metadata" aria-label="Video de Jossy"
+                                hidden></video>
                             <div class="product-dots" role="group" aria-label="Fotos de Jossy">
                                 <button class="product-dot is-active" type="button" data-photo-dot
                                     aria-label="Mostrar foto 1 de 3" aria-pressed="true"></button>
@@ -363,9 +392,17 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="product-palette" role="group" aria-label="Color de Jossy">
-                                <span class="product-swatch" style="--swatch-color:#c5b2dc" aria-hidden="true"></span>
-                                <span>Lila</span>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Jossy">
+                                <button type="button" data-gallery-color-option data-color="Lila claro"
+                                    data-photo-slides="img/jossy-1.jpeg|img/jossy-2.jpeg|videos/jossy-lila.mp4"
+                                    style="--swatch-color:#c8a2c8" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Lila claro
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Fucsia"
+                                    data-photo-slides="videos/jossy-rosado.mp4" style="--swatch-color:#f36da8"
+                                    aria-pressed="false">
+                                    <span aria-hidden="true"></span>Fucsia
+                                </button>
                             </div>
                             <label class="size-selector">
                                 <span>Talla (opcional)</span>
@@ -380,7 +417,7 @@
                                 </select>
                             </label>
                             <a class="btn" data-gallery-contact
-                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Jossy%20en%20color%20Lila%20para%20mujer"
+                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Jossy%20en%20color%20Lila%20claro%20para%20mujer"
                                 target="_blank" rel="noopener">Consultar por WhatsApp</a>
                         </div>
                     </div>
@@ -391,10 +428,10 @@
                         <h2>Med Elite</h2>
                     </div>
                     <div class="product-gallery" data-photo-gallery data-gallery-name="Med Elite"
-                        data-gallery-color="amarillo" data-photo-slides="img/med-elite-amarillo-1.jpeg">
+                        data-gallery-color="Amarillo Pastel" data-photo-slides="img/med-elite-amarillo-1.jpeg">
                         <div class="product-photo">
-                            <img data-photo-image src="img/med-elite-amarillo-1.jpeg" alt="Med Elite color amarillo"
-                                loading="lazy">
+                            <img data-photo-image src="img/med-elite-amarillo-1.jpeg"
+                                alt="Med Elite color Amarillo Pastel" loading="lazy">
                             <div class="product-dots" role="group" aria-label="Fotos de Med Elite">
                                 <button class="product-dot is-active" type="button" data-photo-dot
                                     aria-label="Mostrar foto 1 de 5" aria-pressed="true"></button>
@@ -410,26 +447,26 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="mj-colors" role="group" aria-label="Colores de Med Elite">
-                                <button type="button" data-gallery-color-option data-color="Amarillo"
-                                    data-photo-slides="img/med-elite-amarillo-1.jpeg" style="--swatch-color:#f2e79b"
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Colores de Med Elite">
+                                <button type="button" data-gallery-color-option data-color="Amarillo Pastel"
+                                    data-photo-slides="img/med-elite-amarillo-1.jpeg" style="--swatch-color:#f4e79a"
                                     aria-pressed="true">
-                                    <span aria-hidden="true"></span>Amarillo
+                                    <span aria-hidden="true"></span>Amarillo Pastel
                                 </button>
-                                <button type="button" data-gallery-color-option data-color="Celeste"
-                                    data-photo-slides="img/med-elite-celeste-1.jpeg" style="--swatch-color:#7fb9f0"
+                                <button type="button" data-gallery-color-option data-color="Celeste cielo"
+                                    data-photo-slides="img/med-elite-celeste-1.jpeg" style="--swatch-color:#89cff0"
                                     aria-pressed="false">
-                                    <span aria-hidden="true"></span>Celeste
+                                    <span aria-hidden="true"></span>Celeste cielo
                                 </button>
                                 <button type="button" data-gallery-color-option data-color="Morado"
                                     data-photo-slides="img/med-elite-morado-1.jpeg" style="--swatch-color:#941d9e"
                                     aria-pressed="false">
                                     <span aria-hidden="true"></span>Morado
                                 </button>
-                                <button type="button" data-gallery-color-option data-color="Rosado"
-                                    data-photo-slides="img/med-elite-rosado-1.jpeg" style="--swatch-color:#ed9dbc"
+                                <button type="button" data-gallery-color-option data-color="Rosa"
+                                    data-photo-slides="img/med-elite-rosado-1.jpeg" style="--swatch-color:#e783a2"
                                     aria-pressed="false">
-                                    <span aria-hidden="true"></span>Rosado
+                                    <span aria-hidden="true"></span>Rosa
                                 </button>
                                 <button type="button" data-gallery-color-option data-color="Pistacho"
                                     data-photo-slides="img/med-elite-pistacho-1.jpeg|img/med-elite-pistacho-2.png|img/med-elite-pistacho-3.jpeg|img/med-elite-pistacho-4.jpeg|img/med-elite-pistacho-5.jpeg"
@@ -450,7 +487,7 @@
                                 </select>
                             </label>
                             <a class="btn" data-gallery-contact
-                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Med%20Elite%20en%20color%20Amarillo%20para%20mujer"
+                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20el%20modelo%20Med%20Elite%20en%20color%20Amarillo%20Pastel%20para%20mujer"
                                 target="_blank" rel="noopener">Consultar por WhatsApp</a>
                         </div>
                     </div>
@@ -466,8 +503,8 @@
                         <div class="product-photo">
                             <img data-photo-image src="img/mercy-azul-electrico-1.jpeg"
                                 alt="Mercy color azul eléctrico, foto 1 de 4" loading="lazy">
-                            <video data-photo-video playsinline preload="metadata" aria-label="Video de Mercy" hidden
-                                autoplay loop></video>
+                            <video data-photo-video loop playsinline preload="metadata" aria-label="Video de Mercy"
+                                hidden></video>
                             <div class="product-dots" role="group" aria-label="Fotos de Mercy">
                                 <button class="product-dot is-active" type="button" data-photo-dot
                                     aria-label="Mostrar foto 1 de 4" aria-pressed="true"></button>
@@ -481,11 +518,21 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="mj-colors" role="group" aria-label="Colores de Mercy">
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Colores de Mercy">
                                 <button type="button" data-gallery-color-option data-color="Azul eléctrico"
                                     data-photo-slides="img/mercy-azul-electrico-1.jpeg|img/mercy-azul-electrico-2.jpeg|img/mercy-azul-electrico-3.jpeg|img/mercy-azul-electrico-4.jpeg"
                                     style="--swatch-color:#2470d9" aria-pressed="true">
                                     <span aria-hidden="true"></span>Azul eléctrico
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Celeste claro"
+                                    data-photo-slides="img/mercy-celeste-claro-1.png|img/mercy-celeste-claro-2.png|img/mercy-celeste-claro-3.png|img/mercy-celeste-claro-4.jpeg"
+                                    style="--swatch-color:#89cff0" aria-pressed="false">
+                                    <span aria-hidden="true"></span>Celeste claro
+                                </button>
+                                <button type="button" data-gallery-color-option data-color="Turquesa oscura"
+                                    data-photo-slides="img/mercy-turquesa-oscura-1.jpeg|img/mercy-turquesa-oscura-2.jpeg|img/mercy-turquesa-oscura-3.jpeg|img/mercy-turquesa-oscura-4.jpeg"
+                                    style="--swatch-color:#007c78" aria-pressed="false">
+                                    <span aria-hidden="true"></span>Turquesa oscura
                                 </button>
                                 <button type="button" data-gallery-color-option data-color="Vino"
                                     data-photo-slides="videos/mercy-vino.mp4|img/mercy-vino-1.jpeg"
@@ -511,6 +558,58 @@
                         </div>
                     </div>
                 </section>
+                <section class="mj-s" id="m-12">
+                    <div class="mj-h">
+                        <p class="kk">Nueva colección</p>
+                        <h2>Medic Stitch</h2>
+                    </div>
+                    <div class="product-gallery" data-photo-gallery data-gallery-name="Medic Stitch"
+                        data-gallery-color="Menta pastel"
+                        data-photo-slides="img/medic-stitch-menta-1.png|img/medic-stitch-menta-2.png|img/medic-stitch-menta-3.png|img/medic-stitch-menta-4.png|img/medic-stitch-menta-5.png">
+                        <div class="product-photo">
+                            <img data-photo-image src="img/medic-stitch-menta-1.png"
+                                alt="Medic Stitch color Menta pastel, foto 1 de 5" loading="lazy">
+                            <div class="product-dots" role="group" aria-label="Fotos de Medic Stitch">
+                                <button class="product-dot is-active" type="button" data-photo-dot
+                                    aria-label="Mostrar foto 1 de 5" aria-pressed="true"></button>
+                                <button class="product-dot" type="button" data-photo-dot
+                                    aria-label="Mostrar foto 2 de 5" aria-pressed="false"></button>
+                                <button class="product-dot" type="button" data-photo-dot
+                                    aria-label="Mostrar foto 3 de 5" aria-pressed="false"></button>
+                                <button class="product-dot" type="button" data-photo-dot
+                                    aria-label="Mostrar foto 4 de 5" aria-pressed="false"></button>
+                                <button class="product-dot" type="button" data-photo-dot
+                                    aria-label="Mostrar foto 5 de 5" aria-pressed="false"></button>
+                            </div>
+                        </div>
+                        <div class="product-options">
+                            <p class="kk">Colores disponibles</p>
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Medic Stitch">
+                                <button type="button" data-gallery-color-option data-color="Menta pastel"
+                                    data-photo-slides="img/medic-stitch-menta-1.png|img/medic-stitch-menta-2.png|img/medic-stitch-menta-3.png|img/medic-stitch-menta-4.png|img/medic-stitch-menta-5.png"
+                                    style="--swatch-color:#a8dcc8" aria-pressed="true">
+                                    <span aria-hidden="true"></span>Menta pastel
+                                </button>
+                            </div>
+                            <label class="size-selector">
+                                <span>Talla (opcional)</span>
+                                <select data-size-select>
+                                    <option value="">Sin talla seleccionada</option>
+                                    <option value="XXS">XXS</option>
+                                    <option value="XS">XS</option>
+                                    <option value="S">S</option>
+                                    <option value="M">M</option>
+                                    <option value="L">L</option>
+                                    <option value="XL">XL</option>
+                                    <option value="XXL">XXL</option>
+                                </select>
+                            </label>
+                            <a class="btn" data-gallery-contact
+                                href="https://wa.me/593992301635?text=Hola%2C%20me%20interesa%20la%20colecci%C3%B3n%20Medic%20Stitch%20en%20color%20Menta%20pastel%20para%20mujer"
+                                target="_blank" rel="noopener">Consultar por WhatsApp</a>
+                        </div>
+                    </div>
+                </section>
                 <section class="mj-s" id="m-4">
                     <div class="mj-h">
                         <p class="kk">Nuevo modelo</p>
@@ -523,7 +622,7 @@
                         </div>
                         <div class="product-options">
                             <p class="kk">Colores disponibles</p>
-                            <div class="mj-colors" role="group" aria-label="Color de Scrub Materno">
+                            <div class="mj-colors" data-color-selector role="group" aria-label="Color de Scrub Materno">
                                 <button type="button" data-model="Scrub Materno" data-color="Azul"
                                     data-image="img/mujer-uniforme-materno-azul-visto-de-frente-y-de-lado.jpg"
                                     style="--swatch-color:#243d77" aria-pressed="true">
