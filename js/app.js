@@ -103,7 +103,6 @@ const availableColors = [
   ['Negro', '#111111'],
   ['Blanco', '#ffffff'],
   ['Mostaza', '#c89b19'],
-  ['Celeste claro', '#89cff0'],
   ['Celeste cielo', '#89cff0'],
   ['Azul marino', '#183153'],
   ['Azul intenso', '#163b8c'],
