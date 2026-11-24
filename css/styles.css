@@ -1464,28 +1464,6 @@ footer b {
     display: none
 }
 
-.video-pause-control {
-    position: absolute;
-    z-index: 2;
-    right: 12px;
-    bottom: 54px;
-    width: 42px;
-    height: 42px;
-    border: 0;
-    border-radius: 50%;
-    background: rgb(0 0 0 / 72%);
-    color: #fff;
-    font-size: 16px;
-    line-height: 42px;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 24%);
-}
-
-.video-pause-control[hidden] {
-    display: none
-}
-
 .product-options {
     display: grid;
     justify-items: start;
@@ -1505,6 +1483,35 @@ footer b {
 .product-options [data-color-title] {
     margin: 0;
     font: 700 1.4rem var(--d)
+}
+
+.city-whatsapp-actions {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    margin-top: 2px
+}
+
+.city-whatsapp-actions .btn {
+    text-align: center;
+    padding: 12px 8px;
+    background: var(--navy);
+    border-color: var(--navy);
+    color: var(--paper);
+    font-size: .68rem
+}
+
+.city-whatsapp-actions .btn:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: var(--paper)
+}
+
+@media(max-width:560px) {
+    .city-whatsapp-actions {
+        grid-template-columns: 1fr
+    }
 }
 
 .size-selector {

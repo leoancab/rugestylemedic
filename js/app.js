@@ -50,6 +50,35 @@ const buildProductInquiryUrl = (model, color, size, audience = 'mujer') => {
   return `https://wa.me/593992301635?text=${encodeURIComponent(message)}`;
 };
 
+const buildCityProductInquiryActions = (templateLink) => {
+  const cities = [
+    ['Portoviejo', '593998395769'],
+    ['Manta', '593985265038'],
+    ['Guayaquil', '593985770816'],
+  ];
+  const container = document.createElement('div');
+  container.className = 'city-whatsapp-actions';
+  const links = cities.map(([city, phone]) => {
+    const link = document.createElement('a');
+    link.className = 'btn';
+    link.dataset.city = city;
+    link.dataset.phone = phone;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = `Consultar en ${city}`;
+    link.setAttribute('aria-label', `Consultar por WhatsApp en ${city}`);
+    container.appendChild(link);
+    return link;
+  });
+  templateLink.replaceWith(container);
+
+  return (buildUrl) => {
+    links.forEach((link) => {
+      link.href = buildUrl(link.dataset.city, link.dataset.phone);
+    });
+  };
+};
+
 const availableColors = [
   ['Morado', '#7a2e8e'],
   ['Morado profundo', '#4b145b'],
@@ -140,13 +169,25 @@ document.querySelectorAll('[data-color-palette]').forEach((palette) => {
     throw new Error('La paleta de colores de los Scrubs Básicos está incompleta.');
   }
 
+  const updateCityActions = document.querySelector('#view-mujer, #view-hombre')
+    ? buildCityProductInquiryActions(link)
+    : null;
+
   let selectedModel;
   let selectedColor;
   const updateContactLink = () => {
     if (!selectedModel || !selectedColor) {
       throw new Error('No se pudo determinar el modelo y color seleccionados.');
     }
-    link.href = buildProductInquiryUrl(selectedModel, selectedColor, sizeSelect.value);
+    if (updateCityActions) {
+      updateCityActions((city, phone) => {
+        const sizeText = sizeSelect.value ? `, talla ${sizeSelect.value}` : '';
+        const message = `Hola RUGE, quiero consultar el modelo ${selectedModel} en color ${selectedColor} para mujer${sizeText}`;
+        return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      });
+    } else {
+      link.href = buildProductInquiryUrl(selectedModel, selectedColor, sizeSelect.value);
+    }
   };
   const selectedButton = palette.querySelector('button[data-model][data-color][aria-pressed="true"]');
   if (!selectedButton) {
@@ -197,6 +238,10 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
     throw new Error('La galería no tiene sus fotos, nombre, color, indicadores o consulta configurados.');
   }
 
+  const updateCityActions = document.querySelector('#view-mujer, #view-hombre')
+    ? buildCityProductInquiryActions(contactLink)
+    : null;
+
   const parseSlides = (value) => {
     const parsedSlides = value ? value.split('|') : [];
     if (!parsedSlides.length || parsedSlides.some((slide) => !slide)) {
@@ -208,7 +253,7 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   let slides = defaultSlides;
   const hasColorOptions = colorOptions.length > 0;
   if (dots.length < slides.length
-      || (!hasColorOptions && slides.length > 1 && dots.length !== slides.length)) {
+    || (!hasColorOptions && slides.length > 1 && dots.length !== slides.length)) {
     throw new Error('La galería necesita una foto y un indicador por cada posición.');
   }
 
@@ -216,24 +261,17 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   let intervalId = null;
   let isGalleryVisible = false;
   let isVideoManuallyPaused = false;
-  const videoControl = document.createElement('button');
-  videoControl.type = 'button';
-  videoControl.className = 'video-pause-control';
-  videoControl.hidden = true;
-  videoControl.setAttribute('aria-label', 'Pausar video');
-  videoControl.textContent = 'Ⅱ';
-  image.parentElement.append(videoControl);
 
   const isVideoSlide = (slide) => /\.(mp4|webm|ogg)(?:$|\?)/i.test(slide);
   const syncVideoPlayback = () => {
     if (!video || video.hidden) return;
     if (isGalleryVisible && !isVideoManuallyPaused) {
       if (video.readyState >= 2) {
-        void video.play().catch(() => {});
+        void video.play().catch(() => { });
       } else {
         video.addEventListener('canplay', () => {
           if (isGalleryVisible && !isVideoManuallyPaused) {
-            void video.play().catch(() => {});
+            void video.play().catch(() => { });
           }
         }, { once: true });
       }
@@ -241,19 +279,6 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       video.pause();
     }
   };
-  videoControl.addEventListener('click', () => {
-    if (video.paused) {
-      isVideoManuallyPaused = false;
-      videoControl.textContent = 'Ⅱ';
-      videoControl.setAttribute('aria-label', 'Pausar video');
-      syncVideoPlayback();
-    } else {
-      isVideoManuallyPaused = true;
-      video.pause();
-      videoControl.textContent = '▶';
-      videoControl.setAttribute('aria-label', 'Reproducir video');
-    }
-  });
   const showSlide = (index) => {
     current = index;
     const slide = slides[current];
@@ -261,10 +286,7 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       stopRotation();
       image.hidden = true;
       video.hidden = false;
-      videoControl.hidden = false;
       isVideoManuallyPaused = false;
-      videoControl.textContent = 'Ⅱ';
-      videoControl.setAttribute('aria-label', 'Pausar video');
       video.setAttribute('aria-label', `Video de ${galleryName} color ${galleryColor}`);
       if (video.dataset.src !== slide) {
         video.dataset.src = slide;
@@ -276,7 +298,6 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
       if (video) {
         video.pause();
         video.hidden = true;
-        videoControl.hidden = true;
       }
       image.hidden = false;
       image.src = slide;
@@ -311,7 +332,15 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   }
   const updateContactLink = () => {
     const audience = gallery.dataset.galleryAudience || 'mujer';
-    contactLink.href = buildProductInquiryUrl(galleryName, galleryColor, sizeSelect.value, audience);
+    if (updateCityActions) {
+      updateCityActions((city, phone) => {
+        const sizeText = sizeSelect.value ? `, talla ${sizeSelect.value}` : '';
+        const message = `Hola RUGE, quiero consultar la colección ${galleryName} en color ${galleryColor} para ${audience}${sizeText}`;
+        return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      });
+    } else {
+      contactLink.href = buildProductInquiryUrl(galleryName, galleryColor, sizeSelect.value, audience);
+    }
   };
   sizeSelect.addEventListener('change', updateContactLink);
   const selectColor = (button) => {
