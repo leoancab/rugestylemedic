@@ -739,6 +739,45 @@ footer b {
     transform: translateY(-3px)
 }
 
+.wa-city-picker {
+    position: fixed;
+    right: max(18px, env(safe-area-inset-right, 0px));
+    bottom: calc(max(18px, env(safe-area-inset-bottom, 0px)) + 70px);
+    z-index: 30;
+    display: grid;
+    gap: 8px;
+    width: min(240px, calc(100vw - 36px));
+    padding: 16px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, .22)
+}
+
+.wa-city-picker[hidden] {
+    display: none
+}
+
+.wa-city-picker p {
+    margin: 0 0 2px;
+    color: #002356;
+    font-weight: 700
+}
+
+.wa-city-option {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #25d366;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none
+}
+
+.wa-city-option:hover,
+.wa-city-option:focus-visible {
+    background: #1da851
+}
+
 @media(max-width:960px) {
     .burger {
         display: block
@@ -2938,6 +2977,10 @@ footer {
     .hs-i {
         order: 2;
         height: 440px
+    }
+
+    .hs-i img {
+        object-position: center top
     }
 
     .hs-t {

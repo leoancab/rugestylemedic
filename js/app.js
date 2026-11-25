@@ -44,6 +44,12 @@ document.querySelectorAll('.tabs').forEach((tabs) => {
 });
 
 // 5. Opciones de color para las colecciones
+const whatsappCities = [
+  ['Portoviejo', '593998395769'],
+  ['Manta', '593985265038'],
+  ['Guayaquil', '593985770816'],
+];
+
 const buildProductInquiryUrl = (model, color, size, audience = 'mujer') => {
   const sizeText = size ? `, talla ${size}` : '';
   const message = `Hola, me interesa el modelo ${model} en color ${color} para ${audience}${sizeText}`;
@@ -51,14 +57,9 @@ const buildProductInquiryUrl = (model, color, size, audience = 'mujer') => {
 };
 
 const buildCityProductInquiryActions = (templateLink) => {
-  const cities = [
-    ['Portoviejo', '593998395769'],
-    ['Manta', '593985265038'],
-    ['Guayaquil', '593985770816'],
-  ];
   const container = document.createElement('div');
   container.className = 'city-whatsapp-actions';
-  const links = cities.map(([city, phone]) => {
+  const links = whatsappCities.map(([city, phone]) => {
     const link = document.createElement('a');
     link.className = 'btn';
     link.dataset.city = city;
@@ -78,6 +79,55 @@ const buildCityProductInquiryActions = (templateLink) => {
     });
   };
 };
+
+const floatingWhatsApp = document.querySelector('.wa');
+if (floatingWhatsApp) {
+  const picker = document.createElement('div');
+  picker.className = 'wa-city-picker';
+  picker.id = 'wa-city-picker';
+  picker.setAttribute('role', 'dialog');
+  picker.setAttribute('aria-label', 'Elige una sucursal de WhatsApp');
+  picker.hidden = true;
+
+  const title = document.createElement('p');
+  title.textContent = 'Escríbenos a tu sucursal';
+  picker.appendChild(title);
+
+  whatsappCities.forEach(([city, phone]) => {
+    const link = document.createElement('a');
+    link.className = 'wa-city-option';
+    link.href = `https://wa.me/${phone}?text=${encodeURIComponent(`Hola RUGE Style Medic, quiero comunicarme con la sucursal de ${city}`)}`;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = city;
+    link.setAttribute('aria-label', `Escribir por WhatsApp a la sucursal de ${city}`);
+    picker.appendChild(link);
+  });
+
+  document.body.appendChild(picker);
+  floatingWhatsApp.setAttribute('aria-controls', picker.id);
+  floatingWhatsApp.setAttribute('aria-expanded', 'false');
+  floatingWhatsApp.setAttribute('aria-label', 'Elegir sucursal para escribir por WhatsApp');
+  floatingWhatsApp.addEventListener('click', (event) => {
+    event.preventDefault();
+    picker.hidden = !picker.hidden;
+    floatingWhatsApp.setAttribute('aria-expanded', String(!picker.hidden));
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!picker.contains(event.target) && !floatingWhatsApp.contains(event.target)) {
+      picker.hidden = true;
+      floatingWhatsApp.setAttribute('aria-expanded', 'false');
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !picker.hidden) {
+      picker.hidden = true;
+      floatingWhatsApp.setAttribute('aria-expanded', 'false');
+      floatingWhatsApp.focus();
+    }
+  });
+}
 
 const availableColors = [
   ['Morado', '#7a2e8e'],
@@ -168,7 +218,7 @@ document.querySelectorAll('[data-color-palette]').forEach((palette) => {
     throw new Error('La paleta de colores de los Scrubs Básicos está incompleta.');
   }
 
-  const updateCityActions = document.querySelector('#view-mujer, #view-hombre')
+  const updateCityActions = document.querySelector('#view-mujer, #view-hombre, #view-damas')
     ? buildCityProductInquiryActions(link)
     : null;
 
@@ -237,7 +287,7 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
     throw new Error('La galería no tiene sus fotos, nombre, color, indicadores o consulta configurados.');
   }
 
-  const updateCityActions = document.querySelector('#view-mujer, #view-hombre')
+  const updateCityActions = document.querySelector('#view-mujer, #view-hombre, #view-damas')
     ? buildCityProductInquiryActions(contactLink)
     : null;
 
