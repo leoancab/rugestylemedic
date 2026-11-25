@@ -2673,6 +2673,18 @@ footer {
     padding: 64px 0 76px
 }
 
+#favoritos .sh {
+    justify-content: center;
+    text-align: center
+}
+
+#favoritos .gr {
+    max-width: 640px;
+    margin-inline: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px
+}
+
 .tabs {
     display: flex;
     gap: 24px
