@@ -1461,7 +1461,7 @@ footer b {
     box-shadow: 0 0 0 1px var(--ink)
 }
 
-.mj-colors button > span:not(.media-marker) {
+.mj-colors button>span:not(.media-marker) {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -1469,7 +1469,7 @@ footer b {
     box-shadow: 0 0 0 1px var(--line)
 }
 
-.mj-colors button > .media-marker {
+.mj-colors button>.media-marker {
     width: auto;
     height: auto;
     margin-left: 1px;
@@ -1501,8 +1501,8 @@ footer b {
     align-items: start
 }
 
-.product-photo > img,
-.product-photo > video {
+.product-photo>img,
+.product-photo>video {
     display: block;
     width: 100%;
     max-height: 780px;
@@ -1510,7 +1510,7 @@ footer b {
     background: var(--ice)
 }
 
-.product-photo > video[hidden] {
+.product-photo>video[hidden] {
     display: none
 }
 
@@ -2300,7 +2300,7 @@ h3 {
     font: 500 1.02rem var(--b)
 }
 
-.pr-t > .bd {
+.pr-t>.bd {
     background: var(--blue);
     color: var(--paper);
     border-radius: 0;
@@ -2696,6 +2696,18 @@ footer {
     gap: 24px
 }
 
+#combinaciones-ruge .sh {
+    justify-content: center;
+    text-align: center
+}
+
+#combinaciones-ruge .gr {
+    max-width: 960px;
+    margin-inline: auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px
+}
+
 .tabs {
     display: flex;
     gap: 24px
@@ -3039,6 +3051,11 @@ footer {
 @media(max-width:560px) {
     .gr {
         grid-template-columns: repeat(2, 1fr)
+    }
+
+    #combinaciones-ruge .gr,
+    #favoritos .gr {
+        grid-template-columns: 1fr
     }
 
     .ft-g {
