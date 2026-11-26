@@ -191,6 +191,14 @@ document.querySelectorAll('[data-color-selector]').forEach((container) => {
 
   container.replaceChildren(...orderedColors.map(([name, swatchColor]) => {
     const button = existingByColor.get(normalizeColor(name)) || document.createElement('button');
+    const gallery = container.closest('[data-photo-gallery]');
+    const isSelectedGalleryColor = button.hasAttribute('data-gallery-color-option')
+      && button.getAttribute('aria-pressed') === 'true';
+    const hasMedia = Boolean(
+      button.dataset.image
+      || button.dataset.photoSlides
+      || (isSelectedGalleryColor && gallery?.dataset.photoSlides)
+    );
     button.type = 'button';
     button.dataset.color = name;
     if (model) button.dataset.model = model;
@@ -205,6 +213,16 @@ document.querySelectorAll('[data-color-selector]').forEach((container) => {
     const swatch = document.createElement('span');
     swatch.setAttribute('aria-hidden', 'true');
     button.append(swatch, document.createTextNode(name));
+    if (hasMedia) {
+      const mediaMarker = document.createElement('span');
+      mediaMarker.className = 'media-marker';
+      mediaMarker.setAttribute('aria-hidden', 'true');
+      mediaMarker.textContent = '•';
+      button.append(mediaMarker);
+      button.title = 'Con imágenes o video disponibles';
+    } else {
+      button.removeAttribute('title');
+    }
     return button;
   }));
 });
@@ -464,4 +482,18 @@ document.querySelectorAll('[data-photo-gallery]').forEach((gallery) => {
   } else {
     isGalleryVisible = true;
   }
+});
+
+// 7. Rotación de fotos en las tarjetas destacadas
+document.querySelectorAll('[data-photo-rotator]').forEach((image) => {
+  const slides = image.dataset.photoSlides?.split('|');
+  if (!slides || slides.length < 2 || slides.some((slide) => !slide)) {
+    throw new Error('La tarjeta destacada necesita al menos dos fotos válidas.');
+  }
+
+  let current = 0;
+  window.setInterval(() => {
+    current = (current + 1) % slides.length;
+    image.src = slides[current];
+  }, 2000);
 });

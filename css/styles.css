@@ -1461,12 +1461,23 @@ footer b {
     box-shadow: 0 0 0 1px var(--ink)
 }
 
-.mj-colors button span {
+.mj-colors button > span:not(.media-marker) {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     background: var(--swatch-color);
     box-shadow: 0 0 0 1px var(--line)
+}
+
+.mj-colors button > .media-marker {
+    width: auto;
+    height: auto;
+    margin-left: 1px;
+    color: var(--blue);
+    font-size: 1.25rem;
+    line-height: 1;
+    background: none;
+    box-shadow: none
 }
 
 .mj-colors[data-color-selector] {
