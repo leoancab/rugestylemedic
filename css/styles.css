@@ -569,6 +569,10 @@ header::before {
     grid-template-columns: 1fr 1.4fr
 }
 
+#medidas {
+    grid-template-columns: 1fr
+}
+
 .col {
     background: var(--ink);
     color: var(--paper);
@@ -601,13 +605,13 @@ header::before {
 
 .med {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr;
     background: var(--ice);
     align-items: end
 }
 
 .med-t {
-    padding: clamp(40px, 5vw, 80px) clamp(20px, 4vw, 56px)
+    padding: 0 clamp(20px, 4vw, 56px) clamp(40px, 5vw, 80px)
 }
 
 .med h2 {
@@ -638,14 +642,6 @@ header::before {
     padding-left: 12px;
     font-weight: 700;
     font-size: .95rem
-}
-
-.med-i img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    min-height: 360px
 }
 
 /* footer */
